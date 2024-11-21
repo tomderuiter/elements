@@ -1,0 +1,66 @@
+package main
+
+import "fmt"
+
+func findNumber(collection []int, n int) bool {
+
+	for _, i := range collection {
+		if i == n {
+			return true
+		}
+	}
+
+	return false
+}
+
+func findNumber1(collection []int, n int) bool {
+	index := 0
+	for index < len(collection) {
+		if collection[index] == n {
+			return true
+		}
+		index--
+	}
+
+	return false
+}
+
+func findNumber2(collection []int, n int) (bool, int){
+
+	for i := len(collection)-1; i >= 0; i-- {
+		if i == n {
+			return true
+		}
+
+		if collection[i] == n {
+			fmt.Printf("the position is %d", i)
+			return true
+		}
+	}
+
+	return -1
+		
+}
+
+func findNumber3(collection []int, n int) (bool, int) {
+
+	count := 0
+
+	for i := len(collection)-1; i >= 0; i-- {
+		if i == n {
+			count = count + 1
+			return true
+		}
+
+		fmt.printf("the number occurences %d times", count)
+
+	}
+
+	return -1
+		
+}
+
+func main() {
+	y := 4
+	fmt.Println(findNumber([]int{y, 1, 2, 5, 7, 56} , 3))
+}
