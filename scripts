@@ -45,7 +45,7 @@ func findOccurences(collection []int, n int) (bool, int) {
 			count = count + 1
 		}
 
-		fmt.Printf("the number occurences %d times\n", count)
+		fmt.Printf("the number %d occurences %d times\n", n, count)
 		return true, count
 
 	}
