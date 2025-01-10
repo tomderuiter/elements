@@ -1,6 +1,8 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+)
 
 func findNumber(collection []int, n int) bool {
 
@@ -19,48 +21,107 @@ func findNumber1(collection []int, n int) bool {
 		if collection[index] == n {
 			return true
 		}
-		index--
+		index++
 	}
 
 	return false
 }
 
-func findNumber2(collection []int, n int) (bool, int){
+func findPosition(collection []int, n int) (bool, int) {
 
-	for i := len(collection)-1; i >= 0; i-- {
-		if i == n {
-			return true
-		}
-
+	for i := len(collection) - 1; i >= 0; i-- {
 		if collection[i] == n {
-			fmt.Printf("the position is %d", i)
-			return true
+			fmt.Printf("the position of %d is %d\n", n, i)
+			return true, i
 		}
 	}
 
-	return -1
-		
+	return false, -1
+
 }
 
-func findNumber3(collection []int, n int) (bool, int) {
+func findPosition1(collection []int, n int) []int {
+
+	list := []int{}
+
+	for i := len(collection) - 1; i >= 0; i-- {
+		if collection[i] == n {
+			list = append(list, i)
+		}
+	}
+
+	return list
+
+}
+
+func findPosition2(collection []int, n int) []int {
+
+	list := []int{}
+
+	for i := len(collection) - 1; i >= 0; i-- {
+		if collection[i] == n {
+			list = append(list, i)
+		}
+	}
+
+	return list
+
+}
+
+func findAppearances(collection []int, n, k int) bool {
+	appearances := findPosition2(collection, n)
+
+	if len(appearances) == k {
+		fmt.Printf("Yes, number %d appears %d times\n", n, k)
+		return true
+	} else {
+		fmt.Printf("No, number %d appears %d times\n", n, len(appearances))
+		return false
+	}
+
+}
+
+func findOccurences(collection []int, n int) (bool, int) {
 
 	count := 0
 
-	for i := len(collection)-1; i >= 0; i-- {
-		if i == n {
+	for i := len(collection) - 1; i >= 0; i-- {
+		if collection[i] == n {
 			count = count + 1
-			return true
 		}
-
-		fmt.printf("the number occurences %d times", count)
-
 	}
 
-	return -1
-		
+	fmt.Printf("the number %d occurences %d times\n", n, count)
+	return true, count
+
+}
+
+func findMinNumber(collection []int, n int) bool {
+
+	minNumber := collection[0]
+
+	for i := 0; i < len(collection); i++ {
+		if collection[i] < minNumber {
+			minNumber = collection[i]
+			fmt.Printf("The smallest number is %d\n", minNumber)
+		}
+	}
+	return true
+}
+
+func findMaxNumber(collection []int, n int) bool {
+
+	maxNumber := collection[0]
+
+	for i := 0; i < len(collection); i++ {
+		if collection[i] > maxNumber {
+			maxNumber = collection[i]
+			fmt.Printf("The largest number is %d\n", maxNumber)
+		}
+	}
+	return true
 }
 
 func main() {
-	y := 4
-	fmt.Println(findNumber([]int{y, 1, 2, 5, 7, 56} , 3))
+	fmt.Println(findMinNumber([]int{16, 7, 1, 7, 5, 7, 56, 7, 8, 3, 18}, 7))
 }
